@@ -48,6 +48,16 @@ function fdfilter(in, fdfcoef)
     return collect(Iterators.drop(conv(in, fdfcoef),1))
 end
 
+function fdfilter!(delayedsignal, in, fdfcoef, nonzeroindex)
+    delayedsignal[1+nonzeroindex:length(in)+nonzeroindex+length(fdfcoef)-2] = collect(Iterators.drop(conv(in, fdfcoef),1))
+end
+
+function fdfilter(in::Array{T}, fdfcoef, nonzeroindex) where T
+    out = zeros(T, length(in)+length(fdfcoef)-2+nonzeroindex)
+    fdfilter!(out, in, fdfcoef, nonzeroindex)
+    return out
+end
+
 function vandermonde(N::Int)
     out = repeat(convert.(Float64, collect(0:N-1)), 1, N)
     for n = 0:N-1
@@ -56,9 +66,9 @@ function vandermonde(N::Int)
     return out
 end
 
-function invcramer(in::Array{Float64})
+function invcramer(in::Array{T}) where T
     N = size(in,1)
-    out = zeros(Float64, N, N)
+    out = zeros(T, N, N)
     for m = 1:N
         for n = 1:N
             out[n,m] = (-1)^(m+n) * det(in[[1:m-1; m+1:N],[1:n-1; n+1:N]])

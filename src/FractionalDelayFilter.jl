@@ -45,11 +45,11 @@ end
 function fdfilter(in, fdfcoef)
     # By using the modified Farrow structure, a value of inputted delay is updated as follow: D'=D+1
     # This means that the first value of the output of the filter is useless.
-    return collect(Iterators.drop(conv(in, fdfcoef),1))
+    return conv(in, fdfcoef)[2:end]
 end
 
 function fdfilter!(delayedsignal, in, fdfcoef, nonzeroindex)
-    delayedsignal[1+nonzeroindex:length(in)+nonzeroindex+length(fdfcoef)-2] = collect(Iterators.drop(conv(in, fdfcoef),1))
+    delayedsignal[1+nonzeroindex:length(in)+nonzeroindex+length(fdfcoef)-2] = conv(in, fdfcoef)[2:end]
 end
 
 function fdfilter(in::Array{T}, fdfcoef, nonzeroindex) where T

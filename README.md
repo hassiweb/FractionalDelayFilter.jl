@@ -26,7 +26,7 @@ delayedwave = fdfilter(sinewave, fdfcoef, nonzeroindex)
 
 ![delayedwave](./images/delayed_sine_wave.png)
 
-There also are an in-plane function `fdfilter!` and no zero-padding version `fdfilter`.
+There also are an in-place function `fdfilter!` and no zero-padding version `fdfilter`.
 
 ## Reference
 This implementation is based on a book below.

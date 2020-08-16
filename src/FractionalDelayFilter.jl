@@ -4,7 +4,7 @@ using Distributions
 using LinearAlgebra
 using DSP
 
-export filtord, getfdfcoef, fdfilter
+export filtord, getfdfcoef, fdfilter, fdfilter!
 
 function filtord(D; maxorder=-1)
     # Input arguments:

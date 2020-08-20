@@ -1,4 +1,4 @@
-# FractionalDelayFilter.jl - A Julia package of the fractional delay filter using the Lagrange interpolation with modified Farrow structures
+# FractionalDelayFilter.jl - A Julia package of a fractional delay filter using the Lagrange interpolation with modified Farrow structures
 
 
 ## Usage
